@@ -1,7 +1,8 @@
 # ceibwrapp
-Gweinydd Meddalwedd Gynganeddol
 
-### Install from Source (GitHub)
+## Gweinydd Meddalwedd Gynganeddol
+
+#### Install from source
 
 ```bash
 git clone https://github.com/dimbyd/ceibwrapp.git
