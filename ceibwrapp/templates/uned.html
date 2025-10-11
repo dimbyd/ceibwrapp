@@ -1,0 +1,28 @@
+{%- if node is llinell or node is pennill or node is cerdd -%}
+    <div class="{{ node.species }}">
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "uned.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    {%- if node.species == "pennill" -%}
+        <br/>
+    {%- endif -%}
+    </div>
+
+{%- elif node is nod -%}
+    <span class="{{ node.species }}">{{ node }}</span>
+
+{%- else -%}
+    <span class="{{ node.species }}">
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "uned.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    </span>
+
+    {%- include "tail.html" -%}
+
+{%- endif -%}
+

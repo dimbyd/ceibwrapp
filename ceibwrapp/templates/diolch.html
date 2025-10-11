@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block heading %} Llwyddiant {% endblock %}
+
+{% block content %}
+<p>Uwchlwythwyd:&nbsp; <code>{{ context.filename }}</code></p>
+
+<br/>
+
+<div>
+{%- if context.amrwd -%}
+    <form method="post", action={{ url_for('datryswr') }}>
+        <input type="hidden" name="mewnbwn", value="{{ context.amrwd }}">
+        <button type="submit" class="btn btn-primary">Datrys</button>
+    </form>
+{%- else -%}
+    METHIANT !!
+{%- endif -%}
+</div>
+
+<div class="uned">
+    {%- if context.testun -%}
+        {%- if context.meta and context.meta.teitl -%}
+            Teitl: {{ context.meta.teitl }}
+        {% endif %}
+        {%- if context.meta and context.meta.awdur -%}
+            Awdur: {{ context.meta.awdur }}
+        {% endif %}
+        {{ context.testun }}
+    {%- endif -%}
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block heading %} Cerddi {% endblock %}
+
+{% block content %}
+
+{%- if context and context.db -%}
+
+<div id="acordion">
+
+    {%- for subdir in context.db -%}
+
+        {%- with slug = context.db[subdir]['slug'] -%}
+
+            <div class="card">
+                <div class="card-header" id="heading-{{ slug }}">
+                    <a data-toggle="collapse" data-target="#collapse-{{ slug }}" aria-expanded="false" aria-controls="collapse-{{ slug }}">
+                    {{ subdir }}
+                    </a>
+                </div>
+                <div id="collapse-{{ slug }}" class="collapse" aria-labelledby="heading-{{ slug }}" data-parent="#acordion">
+                    <div class="card-body">
+                        <ul>
+                        {%- for cerdd in context.db[subdir]['cerddi'] -%}
+                        <li>
+                            <a data-toggle="collapse" href="#collapse-{{ cerdd['slug'] }}" aria-expanded="false" aria-controls="collapse-{{ cerdd['slug'] }}">
+                                {{ cerdd['teitl'] }}
+                            </a>
+                            <div class="collapse" id="collapse-{{ cerdd['slug'] }}">
+                                {%- if cerdd['testun'] -%}
+                                  <div class="card card-body">
+                                      <pre>{{ cerdd['testun'] }}</pre>
+                                    <form method="post", action={{ url_for('datryswr') }}>
+                                        <!-- <input type="hidden" name="mewnbwn", value="{{ cerdd['testun'].__str__() }}"> -->
+                                        <input type="hidden" name="mewnbwn", value="{{ cerdd['amrwd'].__str__() }}">
+                                        <button type="submit" class="btn btn-primary">Datrys</button>
+                                    </form>
+                                  </div>
+                                {%- else -%}
+                                  FAILED !
+                                {%- endif -%}
+                            </div>
+                        </li>
+                        {%- endfor -%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        {%- endwith -%}
+    {%- endfor -%}
+</div>
+{%- endif -%}
+
+{% endblock %}

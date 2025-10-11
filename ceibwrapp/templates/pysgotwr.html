@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block heading %} Pysgotwr {% endblock %}
+
+{% block content %}
+<form method="post">
+
+    <div class="form-group">
+        <textarea name="mewnbwn" placeholder="Teipiwch fan hyn" rows=10
+                  class="form-control">{{ request.form['mewnbwn'] | safe }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Rhwydo</button>
+    </div>
+</form>
+
+{%- if context.dalfa -%}
+<div class="tabl">
+<table class="datrysiad">
+    <thead>
+        <tr style="border:1px solid; padding:15px">
+            <th class="pennawd-llinell">Llinell</th>
+            <th class="pennawd">CNG</th>
+            <th class="pennawd">NSI</th>
+            <th class="pennawd">ACE</th>
+            <th class="pennawd">CYT</th>
+            <th class="pennawd-right-border">ODL</th>
+        </tr>
+    </thead>
+    {%- for dat in context.dalfa -%}
+        {%- with node = dat -%}
+            {%- include "tabl.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+</table>
+ </div>
+ {%- endif -%}
+
+{% endblock %}

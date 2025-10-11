@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block heading %} Cronfa {% endblock %}
+
+{% block content %}
+
+
+<p>Fase chi'n hoffi helpu creu cronfa o gerddi Cymraeg?</p>
+<p>Gallwch uwchlwytho cerdd fan hyn (a dewis ei datrys ar y dudalen nesaf).</p>
+
+<div>
+    <h6>Gofyniadau</h6>
+    <ul>
+        <li>Dim cerddi dan hawlfraint.</li>
+        <li>Ffeiliau testun <code><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a></code> yn unig.</li>
+        <li>Penillion wedi terfynu gan EOL+EOL (blank line).</li>
+        <li>Llinellau wedi terfynu gan EOL (end of line).</li>
+        <li>Geiriau wedi terfynu gan SPC (space) neu EOL (end of line).</li>
+        <li>Uwch-wybodaeth mewn pennawd <code><a href="https://en.wikipedia.org/wiki/YAML">YAML</a></code>.
+            <ul>
+                <li>Amffiniaidau (delimiters): <code>'---'</code> a <code>'---'</code> </li>
+                <li>Cyfres o barau allwedd:gwerth (key:value pairs)</li>
+                <li>Gorfodol: <code>teitl</code>, <code>awdur</code>. Gallwch osod <code>awdur: Anhysbys</code>.</li>
+            </ul>
+        </li>
+        <li>Enghraifft isod.</li>
+    </ul>
+</div>
+<br/>
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="file" class="form-control" id="inputFile">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Uwchlwytho</button>
+        </div>
+    </form>
+</div>
+
+<br/>
+<strong>Enghraifft</strong>
+<div class="uned">---
+teitl: Edifeirwch
+awdur: Dafydd ap Gwilym
+---
+Prydydd i Forfudd wyf fi,
+Prid o swydd, prydais iddi.
+Myn y Gŵr a fedd heddiw
+Mae gwayw i'm pen am wen wiw,
+Ac i'm tâl mae gofalglwyf;
+Am aur o ddyn marw ydd wyf.
+Pan ddêl, osgel i esgyrn,
+Angau a'i chwarelau chwyrn,
+Dirfawr fydd hoedl ar derfyn,
+Darfod a wna tafod dyn.
+Y Drindod, rhag cydfod cwyn,
+A mawr ferw, a Mair Forwyn
+A faddeuo 'ngam dramwy,
+Amen, ac ni chanaf mwy.
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block heading %} Odliadur {% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="form-group">
+        <input type="text" name="sillaf"
+               placeholder="Teipiwch fan hyn"
+               value="{{ request.form['sillaf'] }}"
+               size="27"></input>
+        <br/><br/>
+        <input type="checkbox" name="llusg" {{'checked="checked"' if context.llusg else ""}}> 
+        Odlau llusg
+        <br/>
+        <input type="checkbox" name="acennog" {{'checked="checked"' if context.acennog else ""}}> 
+        Acennog yn unig (amherffaith)
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Odlau</button>
+    </div>
+</form>
+
+<div id="allbwn">
+{% if context.odlau %}
+    <code>
+    {%- for s in context.odlau.split() -%}
+        {{ s }}&#32;
+    {%- endfor -%}
+    </code>
+{% endif %}
+</div>
+<br/>
+
+{% endblock %}

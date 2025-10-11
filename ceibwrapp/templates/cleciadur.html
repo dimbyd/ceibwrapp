@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block heading %} Cleciadur (araf ac amherffaith) {% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="form-group">
+        <input type="text" name="ymholiad"
+               placeholder="Teipiwch fan hyn"
+               value="{{ request.form['ymholiad'] }}"
+               size="20"></input>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Clecs</button>
+    </div>
+</form>
+
+<br/>
+
+<div class="allbwn">
+{% if context.clecs %}
+    {%- for key in ['CAC', 'CDI', 'ADI', 'AAC'] -%}
+        {%- if context.clecs[key] -%}
+            <div>
+            {{ context.llythrenwau[key] }}
+            <div class="rhestr-geiriau"><code>
+            {%- for g in context.clecs[key] -%}
+                {{ g }}&#32;
+            {%- endfor -%}
+            </code></div>
+            </div>
+            <br/>
+
+        {%- endif -%}
+    {%- endfor -%}
+{% endif %}
+</div>
+
+{% endblock %}

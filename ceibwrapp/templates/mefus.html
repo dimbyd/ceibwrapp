@@ -1,0 +1,10 @@
+
+{% block content %}
+{%- if context and context.mefus -%}
+    <pre>
+    {%- for perl in context.mefus -%}
+        {{ perl }}<br/>
+    {%- endfor -%}
+    </pre>
+{%- endif -%}
+{% endblock %}

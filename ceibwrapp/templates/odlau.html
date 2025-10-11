@@ -1,0 +1,34 @@
+{%- if node is odl -%}
+    <span class="{{ node.species }}">
+    {%- if context.odlau and node in context.odlau -%}
+        {%- set colour = context.cmap.odlau[context.odlau[node]] -%}
+        <span style="color:{{ colour }};">
+        {%- for child in node.children -%}
+            {%- with node = child -%}
+                {%- include "odlau.html" -%}
+            {%- endwith -%}
+        {%- endfor -%}
+        </span>
+    {%- else -%}
+        {%- for child in node.children -%}
+            {%- with node = child -%}
+                {%- include "odlau.html" -%}
+            {%- endwith -%}
+        {%- endfor -%}
+    {%- endif -%}
+    </span>
+
+{%- elif node is nod -%}
+    {{ node }}
+
+{%- else -%}
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "odlau.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+
+{%- endif -%}
+
+{%- include "tail.html" -%}
+

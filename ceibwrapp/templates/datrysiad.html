@@ -1,0 +1,28 @@
+{%- if node is rhaniad and node.lefel() == 1 -%}
+    <span class="{{ node.species }}">
+        {%- include "acenion.html" -%}
+        {%- include "odlau.html" -%}
+        {%- include "cytseinedd.html" -%}
+    </span>
+
+{%- elif node is rhaniad and node.lefel() == 2 -%}
+    <span class="{{ node.species }}">
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "acenion.html" -%}
+            {%- include "odlau.html" -%}
+            {%- include "cytseinedd.html" -%}
+         {%- endwith -%}
+    {%- endfor -%}
+    </span>
+
+{%- else -%}
+    <div class="{{ node.species }}">
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "datrysiad.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    </div>
+
+{%- endif -%}

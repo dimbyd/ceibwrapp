@@ -1,0 +1,15 @@
+{%- if node is corfan -%}
+    {%- set olaf = node.gair_olaf() -%}
+    {%- if not "\n" in olaf.terfyniad() -%}
+        {{ context.smap.whitespace.TOR | safe }}{{ context.smap.whitespace.SPC | safe }}
+    {%- endif -%}
+{%- endif -%}
+
+{%- if node is gair -%}
+   {%- if "\n" in node.terfyniad() -%}
+        {{ context.smap.whitespace.EOL | safe }}
+    {%- else -%}
+        {{ context.smap.whitespace.SPC | safe }}
+    {%- endif -%}
+{%- endif -%}
+

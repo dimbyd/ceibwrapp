@@ -1,0 +1,21 @@
+{%- if node is nod -%}
+
+    {%- if context.acenion and node in context.acenion -%}
+        {%- set symbol = context.smap.acenion[context.acenion[node]] -%}
+        {{ symbol | safe }}
+    {%- else -%}
+        {%- set symbol = context.smap.whitespace.SPC -%}
+        {%- set blanks = node.text.__len__()*symbol -%}
+        {{ blanks | safe }}
+    {%- endif -%}
+
+{%- else -%}
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "acenion.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+{%- endif -%}
+
+{%- include "tail.html" -%}
+

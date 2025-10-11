@@ -1,4 +1,13 @@
-# Byte-compiled / optimized / DLL files
+# ceibwrapp (dimbyd)
+cc/
+uploads/
+
+.DS_Store
+*.code-workspace
+.git/
+.venv/
+
+docs/source/generated# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class

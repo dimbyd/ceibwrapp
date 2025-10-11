@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block heading %} Datryswr {% endblock %}
+
+{% block content %}
+
+<form method="post">
+
+    <div class="form-group">
+        <textarea name="mewnbwn" placeholder="Teipiwch fan hyn" rows=4
+                class="form-control">{{ request.form['mewnbwn'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Datrys</button>
+    </div>
+</form>
+
+<br/>
+
+Profion
+<table style="border:2px black;">
+    <tr>
+        <td style="vertical-align:top;">
+            Ochain cloch a chanu clir<br/>
+            Ni all lladd ond ennyn llid<br/>
+            Gwn ddifa lawer calon<br/>
+            Bydd y dolydd yn deilio<br/>
+            Trydar mwyn adar mynydd
+        </td>
+        <td style="vertical-align:top;">
+            Wele rith fel ymyl rhod - o'n cwmpas<br/>
+            Campwaith dewin hynod.<br/>
+            Hen linell bell nad yw'n bod<br/>
+            Hen derfyn nad yw'n darfod.
+        </td>
+        <td style="vertical-align:top;">
+            Dwyglust feinion aflonydd<br/>
+            Dail saets wrth ei dâl y sydd<br/>
+            Trwsio fal golewo glain<br/>
+            Y bu wydrwr ei bedrain
+        </td>
+        <td style="vertical-align:top;">
+            Llwybr i dranc y lle bo'r drin,<br/>
+            Diau, ni ddawr angau rin<br/>
+            Na breiniau glew na brenin
+        </td>
+    </tr>
+</table>  
+<div id="prif"></div>
+
+<br/>
+
+{%- if context -%}
+
+<br/>
+
+{% if scroll %}
+<script>
+    document.getElementById('{{ scroll }}').scrollIntoView();
+    // or
+    document.location.hash = '#' + '{{ scroll }}';
+</script>
+{% endif %}
+
+<br>
+<h3>Datrysiad</h3>
+
+<hr/>
+
+{%- if context.meta.teitl -%}
+<div>
+    <pre>{{ context.meta.teitl }}<br/>
+    {%- if context.meta.awdur -%} 
+        {{ context.meta.awdur }}{%- endif -%}
+</pre>
+</div>
+{%- else -%}
+<br/>
+{%- endif -%}
+
+<h5><pre>
+{%- if context.datrysiad.dosbarth -%}
+    <span style="color:blue">{{ context.llythrenwau[context.datrysiad.dosbarth] }}</span>
+{%- else -%}
+    <span style="color:purple">{{ context.llythrenwau[None] }}</span>
+{%- endif -%}
+</pre></h5>
+
+<div class="tabl">
+<table class="datrysiad">
+    <thead>
+        <tr style="border:1px solid; padding:15px">
+            <th class="pennawd-llinell">Llinell</th>
+            <th class="pennawd">CNG</th>
+            <th class="pennawd">NSI</th>
+            <th class="pennawd">ACE</th>
+            <th class="pennawd">CYT</th>
+            <th class="pennawd-right-border">ODL</th>
+            {%- if context.datrysiad.lefel() > 1 -%}
+                <th class="pennawd">CWP</th>
+                <th class="pennawd-right-border">ODL</th>
+            {%- endif -%}
+            {%- if context.datrysiad.lefel() > 2 -%}
+                <th class="pennawd">MES</th>
+            {%- endif -%}
+            {%- if context.datrysiad.lefel() > 3 -%}
+                <th class="pennawd">AWD</th>
+            {%- endif -%}
+        </tr>
+    </thead>
+    {%- with node = context.datrysiad -%}
+        {%- include "tabl.html" %}
+    {%- endwith -%}
+</table>
+</div> 
+
+ <br/>
+
+IPA
+<div class="uned">
+    {%- if context.uned -%}
+        {{ context.uned.ipa() }}
+    {%- endif -%}
+</div>
+
+<br/>
+
+STATS
+<div class="info">Nifer llinellau: {{ context.datrysiad.nifer_rhaniadau() }}
+Nifer geiriau: {{ context.datrysiad.nifer_geiriau() }}
+Nifer sillafau: {{ context.datrysiad.nifer_sillafau() }}
+</div>
+
+<br/>
+
+TEXT
+<div class="info">
+{%- if context.xml_text -%}
+    <pre>{{ context.xml_text }}</pre>
+{%- endif -%}
+</div>
+
+<br/>
+
+SAIN
+<div class="info">
+{%- if context.xml_sain -%}
+    <pre>{{ context.xml_sain }}</pre>
+{%- endif -%}
+</div>
+
+{%- endif -%}
+{%- endblock -%}

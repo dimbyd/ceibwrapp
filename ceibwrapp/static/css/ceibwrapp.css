@@ -1,0 +1,206 @@
+
+.column {
+  float: left;
+  flex: 50%;
+}
+
+.rcolumn {
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+  .rcolumn {
+    margin-left: 0; 
+    margin-right: auto;
+  }
+}
+
+.rhestr-geiriau {
+    text-wrap:wrap 
+}
+
+.meta {
+    /* border:1px solid black;  */
+    padding:0px; 
+    font-family:'Courier New', 'monospace';
+    /* white-space: pre-wrap; */
+    white-space: pre-line;
+}
+.info {
+    border:1px solid black; 
+    padding:5px; 
+    font-family:'Courier New', 'monospace';
+    /* white-space: pre-wrap; */
+    white-space: pre-line;
+}
+.uned {
+    border:1px solid black; 
+    padding:5px; 
+    /* font-size:120%;  */
+    font-family:'Courier New', 'monospace';
+    /* white-space: pre-wrap; */
+    white-space: pre-line;
+}
+
+div.datrysiad {
+    border:1px solid black; 
+    /* border:2px solid darkgreen;  */
+    padding:5px; 
+    font-size:110%; 
+    font-family:'Courier New', 'monospace';
+    white-space: pre-line;
+}
+
+/* TABLE */
+
+.tabl {
+    /* border:3px solid darkblue; 
+    padding:5px;  */
+    font-size:110%; 
+    font-family:'Courier New', 'monospace';
+    /* white-space: pre-wrap; */
+    white-space: pre-line;
+}
+
+table.datrysiad {
+    width:auto;
+    border:2px solid black; 
+    padding:15px;
+}
+
+/* HEADERS */
+
+/* th, th.pennawd, th.pennawd-llinell { */
+
+th {
+    border:1px solid;
+    text-align: center;
+    padding:10px,
+}
+
+th.pennawd {
+    /* border:1px solid; */
+    text-align: center;
+    padding: 10px;
+}
+
+th.pennawd-right-border {
+    border-right:2px solid;
+    text-align: center;
+    padding: 10px;
+}
+
+th.pennawd-llinell {
+    /* border:1px solid; */
+    text-align: left;
+    padding: 10px;
+}
+
+/* ROWS */
+
+tr {
+    border:1px solid;
+    padding:5px;
+}
+
+tr.datrysiad {
+    border:1px solid;
+    padding:5px;
+}
+
+tr.dat-llinell {
+    border:1px solid darkgreen;
+}
+
+tr.dat-cwpled {
+    border:2px solid black;
+}
+tr.dat-mesur {
+    border:2px solid black;
+}
+
+/* CELLS */
+
+td {
+    padding: 10px;
+}
+
+td.cell-heavy-border-right {
+    border-right:2px solid;
+}
+
+td.dat-llinell {
+    /* padding: 2px; */
+    border:1px solid;
+   text-align: center;
+}
+td.dat-llinell-right-border {
+    /* padding: 2px; */
+    border-right:2px solid;
+   text-align: center;
+}
+
+td.dat-cwpled {
+    /* padding: 2px; */
+    border:1px solid;
+   text-align: center;
+}
+
+td.dat-llinell-fancy {
+    border:1px solid;
+    padding: 10px;
+    text-wrap:nowrap 
+}
+
+/* DOSBARTH */
+
+td.dosb-llinell {
+   /* font-weight: bold; */
+    color: blue;
+    border:1px solid black;
+    text-align: center;
+}
+
+td.dosb-cwpled {
+    /* font-weight: bold; */
+    color: blue;
+    border:1px solid black;
+    text-align: center;
+}
+
+td.dosb-mesur, .dosb-awdl {
+   /* font-weight: bold; */
+    color: green;
+    border:1px solid black;
+    text-align: center;
+}
+
+/* FORMS */
+.custom-file-button input[type=file] {
+  margin-left: -2px !important;
+}
+
+/* .custom-file-button input[type=file]::-webkit-file-upload-button {
+  display: none;
+} */
+
+/* .custom-file-button input[type=file]::file-selector-button {
+  display: none;
+} */
+
+.custom-file-button:hover label {
+  background-color: #dde0e3;
+  cursor: pointer;
+}

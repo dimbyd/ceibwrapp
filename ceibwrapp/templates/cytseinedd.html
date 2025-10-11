@@ -1,0 +1,29 @@
+{%- if node is nod -%}
+    
+    {%- if context.cytseinedd and node in context.cytseinedd -%}
+        {%- set colour = context.cmap.cytseinedd[context.cytseinedd[node]] -%}
+        <span class="{{ node.species }}"; style="color:{{ colour }}";>{{ node.text }}</span>
+    
+    {%- elif context.acenion and node in context.acenion -%}
+        {%- set symbol = context.smap.acenion[context.acenion[node]] -%}
+        {{ context.smap.acenion.INL | safe }}
+
+    {%- else -%}
+        {%- set blanks = node.text.__len__()*context.smap.whitespace.SPC -%}
+        {{ blanks | safe }}
+    
+    {%- endif -%}
+
+{%- else -%}
+
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "cytseinedd.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+
+{%- endif -%}
+
+{%- include "tail.html" -%}
+    
+

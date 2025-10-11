@@ -1,0 +1,85 @@
+
+ {%- if node.lefel() == 1 -%}
+    <tr class="dat-llinell">
+        <td class="dat-llinell-fancy">
+            {%- include "datrysiad.html" -%}
+        </td>
+        <td class="dosb-llinell"> {%- if node.dosbarth -%}{{ node.dosbarth }}{% endif %}</td>
+        <td class="dat-llinell"> {{ node.nifer_sillafau() }} </td>
+        <td class="dat-llinell"> {{ node.aceniad_str() }} </td>
+        <td class="dat-llinell"> {{ node.cytseinedd_str() }}</td>
+        <td class="dat-llinell-right-border"> {{ node.odlau_str() }} </td>
+    </tr>
+
+{%- elif node.lefel() == 2 and "mesur" not in [node.species, node.genus, node.family] -%}
+    
+    {%- if node.dosbarth == 'TOB' -%}
+        {%- set cyrch = node[1].children.pop(0) -%}
+        <!--{{ node[0].children.append(cyrch) }}-->
+    {%- endif -%}
+    
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "tabl.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    {%- if node.dosbarth -%}
+    <tr class="dat-cwpled">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-heavy-border-right"></td>
+        <td class="dosb-cwpled"> {{ node.dosbarth }} </td>
+        <td class="cell-heavy-border-right"> {{ node.odlau_str() }} </td>
+    </tr>
+    {%- endif -%}
+
+{%- elif node.lefel() == 3 or node.genus in ["mesur"] or node.family in ["mesur"] -%}
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "tabl.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    {%- if node.dosbarth -%}
+    <tr class="dat-mesur">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-heavy-border-right"></td>
+        <td class="dosb-mesur"> {{ node.dosbarth }} </td>
+    {%- endif -%}
+    </tr>
+
+{%- elif node.lefel() == 4 or node.species in ["awdl"] -%}
+    {%- for child in node.children -%}
+        {%- with node = child -%}
+            {%- include "tabl.html" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    {%- if node.dosbarth -%}
+    <tr class="dat-awdl">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="cell-heavy-border-right"></td>
+        <td class="dosb-awdl"> {{ node.dosbarth }} </td>
+    </tr>
+    {%- endif -%}
+
+    {%- else -%}
+
+    METHIANT!
+    {{ node.species }} | {{ node.genus }} | {{ node.family }} 
+
+{%- endif -%}
