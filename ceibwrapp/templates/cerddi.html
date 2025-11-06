@@ -3,53 +3,59 @@
 {% block heading %} Cerddi {% endblock %}
 
 {% block content %}
-
 {%- if context and context.db -%}
+<h4>Beirdd yr Uchelwyr</h4>
 
-<div id="acordion">
-
-    {%- for subdir in context.db -%}
-
+<div class="acordion" id="accordion-cerddi">
+{%- for subdir in context.db -%}
+    <div class="accordion-item">
         {%- with slug = context.db[subdir]['slug'] -%}
-
-            <div class="card">
-                <div class="card-header" id="heading-{{ slug }}">
-                    <a data-toggle="collapse" data-target="#collapse-{{ slug }}" aria-expanded="false" aria-controls="collapse-{{ slug }}">
+            <div class="accordion-header" id="heading-{{ slug }}">
+                <!-- <a data-bs-toggle="collapse" data-bs-target="#collapse-{{ slug }}" aria-expanded="true" aria-controls="collapse-{{ slug }}">
                     {{ subdir }}
-                    </a>
-                </div>
-                <div id="collapse-{{ slug }}" class="collapse" aria-labelledby="heading-{{ slug }}" data-parent="#acordion">
-                    <div class="card-body">
-                        <ul>
+                </a> -->
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ slug }}" aria-expanded="true" aria-controls="collapse-{{ slug }}">
+                    {{ subdir }}
+                </button>
+            </div>
+            <div id="collapse-{{ slug }}" class="accordion-collapse collapse" aria-labelled-by="heading-{{ slug }}" data-bs-parent="#accordion-cerddi">
+                <div class="accordion-body">
+                    <div class="accordion" id="accordion-cerddi-{{ slug }}">
+                        <!-- <ul> -->
                         {%- for cerdd in context.db[subdir]['cerddi'] -%}
-                        <li>
-                            <a data-toggle="collapse" href="#collapse-{{ cerdd['slug'] }}" aria-expanded="false" aria-controls="collapse-{{ cerdd['slug'] }}">
-                                {{ cerdd['teitl'] }}
-                            </a>
-                            <div class="collapse" id="collapse-{{ cerdd['slug'] }}">
-                                {%- if cerdd['testun'] -%}
-                                  <div class="card card-body">
-                                      <pre>{{ cerdd['testun'] }}</pre>
-                                    <form method="post", action={{ url_for('datryswr') }}>
-                                        <!-- <input type="hidden" name="mewnbwn", value="{{ cerdd['testun'].__str__() }}"> -->
-                                        <input type="hidden" name="mewnbwn", value="{{ cerdd['amrwd'].__str__() }}">
-                                        <button type="submit" class="btn btn-primary">Datrys</button>
-                                    </form>
-                                  </div>
-                                {%- else -%}
-                                  FAILED !
-                                {%- endif -%}
+                            <!-- <li> -->
+                            <div class="accordion-item ps-4">
+                                {%- with slug2 = cerdd['slug'] -%}
+                                    <div class="accordion-header" id="heading-{{ slug2 }}"> 
+                                        <a data-bs-toggle="collapse" data-bs-target="#collapse-{{ slug2 }}" aria-expanded="false" aria-controls="collapse-{{ slug2 }}">
+                                            {{ cerdd['teitl'] }}
+                                        </a>
+                                        <!-- <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ slug2 }}" aria-expanded="false" aria-controls="collapse-{{ slug2 }}">
+                                            <span class="text-primary">{{ cerdd['teitl'] }}</span>
+                                        </button> -->
+                                    </div>
+                                    <div id="collapse-{{ slug2 }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ slug2 }}" data-bs-parent="#accordion-cerddi-{{ slug }}">
+                                        {%- if cerdd['testun'] -%}
+                                            <div class="accordion-body">
+                                                <pre>{{ cerdd['testun'] }}</pre>
+                                                <form method="post", action={{ url_for('datrys') }}>
+                                                    <input type="hidden" name="mewnbwn", value="{{ cerdd['amrwd'].__str__() }}">
+                                                    <button type="submit" class="btn btn-primary">Datrys</button>
+                                                </form>
+                                            </div>
+                                        {%- endif -%}
+                                    </div>
+                                {%- endwith -%}
                             </div>
-                        </li>
+                            <!-- </li> -->
                         {%- endfor -%}
-                        </ul>
+                        <!-- </ul> -->
                     </div>
                 </div>
             </div>
-
         {%- endwith -%}
-    {%- endfor -%}
+    </div>
+{%- endfor -%}
 </div>
 {%- endif -%}
-
 {% endblock %}

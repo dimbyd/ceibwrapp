@@ -1,6 +1,7 @@
 # ceibwrapp (dimbyd)
 cc/
 uploads/
+tmp/*
 
 .DS_Store
 *.code-workspace

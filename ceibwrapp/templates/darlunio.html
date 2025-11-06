@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block heading %} Darlunio {% endblock %}
+
+{% block content %}
+<p>Gosod penillion yn y <a href="https://en.wikipedia.org/wiki/Poincar%C3%A9_disk_model">Poincaré disc.</a></p>
+
+<form method="post">
+
+    <div class="form-group">
+        <textarea name="mewnbwn" placeholder="Teipiwch fan hyn" rows=5
+                  class="form-control">{{ request.form['mewnbwn'] | safe }}</textarea>
+    </div>
+    <br/>
+    <table class='noborders'>
+    <tr>
+        <td>
+            <span class="form-group">
+                <button type="submit" class="btn btn-primary">Darlunio</button>
+            </span>
+        </td>
+        <td>
+            <span class="form-check">
+                <input class="form-check-input" type="radio" name="drawingType" id="radioHyperbolic" 
+                    value="hyperbolic" {{ 'checked' if context.dtype == 'hyperbolic' else '' }}>
+                <label class="form-check-label" for="radioHyperbolic"> H </label>
+            </span>
+        </td>
+        <td>
+            <span class="form-check">
+                <input class="form-check-input" type="radio" name="drawingType" id="radioComplex" 
+                    value="complex" {{ 'checked' if context.dtype == 'complex' else '' }}>
+                <label class="form-check-label" for="radioComplex"> C </label>
+            </span>
+        </td>
+    </tr>
+    </table>
+</form>
+
+
+<br/>
+{%- if context.img_file -%}
+<div class="darlun">
+    <img src="{{ context.img_file }}" style="width:50%">
+</div>
+ {%- endif -%}
+
+<br/>
+{%- include "profion.html" -%}
+<br/>
+
+{% endblock %}

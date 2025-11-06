@@ -1,3 +1,35 @@
+@font-face {
+    font-family: coelbren;
+    src: ('BabelStoneCoelbren.ttf');
+}
+
+.coelbren {
+    font-family:coelbren; 
+    color:red;
+}
+
+table.noborders {
+    /* border-collapse: collapse; */
+    border-style : hidden;
+
+}
+
+/* body {
+     background-image: url('images/dewiemrys.png');
+     background-repeat: no-repeat;
+     background-size: cover;
+} */
+
+
+a {
+  text-decoration: none;
+}
+
+h1::after {
+   content: 'BETA';
+   font-size: 12px;
+   vertical-align: top;
+}
 
 .column {
   float: left;
@@ -55,7 +87,7 @@
 }
 
 div.datrysiad {
-    border:1px solid black; 
+    border:1px solid; 
     /* border:2px solid darkgreen;  */
     padding:5px; 
     font-size:110%; 
@@ -76,7 +108,7 @@ div.datrysiad {
 
 table.datrysiad {
     width:auto;
-    border:2px solid black; 
+    border:2px solid; 
     padding:15px;
 }
 
@@ -121,14 +153,14 @@ tr.datrysiad {
 }
 
 tr.dat-llinell {
-    border:1px solid darkgreen;
+    border:1px solid
 }
 
 tr.dat-cwpled {
-    border:2px solid black;
+    border:2px solid;
 }
 tr.dat-mesur {
-    border:2px solid black;
+    border:2px solid;
 }
 
 /* CELLS */
@@ -168,22 +200,19 @@ td.dat-llinell-fancy {
 
 td.dosb-llinell {
    /* font-weight: bold; */
-    color: blue;
-    border:1px solid black;
+    border:1px solid;
     text-align: center;
 }
 
 td.dosb-cwpled {
     /* font-weight: bold; */
-    color: blue;
-    border:1px solid black;
+    border:1px solid;
     text-align: center;
 }
 
 td.dosb-mesur, .dosb-awdl {
    /* font-weight: bold; */
-    color: green;
-    border:1px solid black;
+    border:1px solid;
     text-align: center;
 }
 

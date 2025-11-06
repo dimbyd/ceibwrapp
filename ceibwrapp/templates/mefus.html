@@ -1,10 +1,11 @@
+{% extends 'base.html' %}
+
+{% block heading %} Mefus (beta) {% endblock %}
 
 {% block content %}
-{%- if context and context.mefus -%}
-    <pre>
-    {%- for perl in context.mefus -%}
-        {{ perl }}<br/>
+{%- if context -%}
+    {%- for key, value in context.items() -%}
+    <a href="{{ value }}"> {{ key }}</a><br/>
     {%- endfor -%}
-    </pre>
 {%- endif -%}
 {% endblock %}

@@ -4,11 +4,34 @@
         <td class="dat-llinell-fancy">
             {%- include "datrysiad.html" -%}
         </td>
-        <td class="dosb-llinell"> {%- if node.dosbarth -%}{{ node.dosbarth }}{% endif %}</td>
+        <td class="dosb-llinell"> 
+            {%- if node.dosbarth -%}
+                <span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.dosbarth] }}">{{ node.dosbarth }}</span>
+            {%- endif -%}
+        </td>
         <td class="dat-llinell"> {{ node.nifer_sillafau() }} </td>
-        <td class="dat-llinell"> {{ node.aceniad_str() }} </td>
+        <td class="dat-llinell">
+            {%- if node.parent and node.parent.dosbarth == 'TOB' -%}
+                <!-- revert -->
+                {%- if node.parent.children.index(node) == 0 -%}
+                    <!-- {{ node.children.pop() }} -->
+                    {%- if node.aceniad_str() -%}
+                        <span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.aceniad_str()] }}">{{ node.aceniad_str() }}</span>
+                    {%- endif -%}
+                {%- else -%}
+                    <!--{{ node.children.insert(0, cyrch) }}-->
+                    {%- if node.aceniad_str(pengoll=True) -%}
+                        <span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.aceniad_str(pengoll=True)] }}">{{ node.aceniad_str(pengoll=True) }}</span>
+                    {%- endif -%}
+                {%- endif -%}
+            {%- elif node.aceniad_str() -%}
+                <span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.aceniad_str()] }}">{{ node.aceniad_str() }}</span>
+            {%- endif -%}
+        </td>
         <td class="dat-llinell"> {{ node.cytseinedd_str() }}</td>
-        <td class="dat-llinell-right-border"> {{ node.odlau_str() }} </td>
+        <td class="dat-llinell-right-border">
+            {%- if node.odlau_str() is not none -%}{{ node.odlau_str() }}{%- endif -%}
+        </td>
     </tr>
 
 {%- elif node.lefel() == 2 and "mesur" not in [node.species, node.genus, node.family] -%}
@@ -31,12 +54,14 @@
         <td></td>
         <td></td>
         <td class="cell-heavy-border-right"></td>
-        <td class="dosb-cwpled"> {{ node.dosbarth }} </td>
-        <td class="cell-heavy-border-right"> {{ node.odlau_str() }} </td>
+        <td class="dosb-cwpled"><span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.dosbarth] }}">{{ node.dosbarth }}</span></td>
+        <td class="cell-heavy-border-right"> 
+            {%- if node.odlau_str() is not none -%}{{ node.odlau_str() }}{%- endif -%}
+        </td>
     </tr>
     {%- endif -%}
 
-{%- elif node.lefel() == 3 or node.genus in ["mesur"] or node.family in ["mesur"] -%}
+{%- elif node.lefel() == 3 or "mesur" in [node.species, node.genus, node.family] -%}
     {%- for child in node.children -%}
         {%- with node = child -%}
             {%- include "tabl.html" -%}
@@ -52,7 +77,10 @@
         <td></td>
         <td></td>
         <td class="cell-heavy-border-right"></td>
-        <td class="dosb-mesur"> {{ node.dosbarth }} </td>
+        <td class="dosb-mesur"><span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.dosbarth] }}">{{ node.dosbarth }}</span></td>
+        <td class="cell-heavy-border-right">
+            {%- if node.odlau_str() is not none -%}{{ node.odlau_str() }}{%- endif -%}
+        </td>
     {%- endif -%}
     </tr>
 
@@ -72,8 +100,9 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
         <td class="cell-heavy-border-right"></td>
-        <td class="dosb-awdl"> {{ node.dosbarth }} </td>
+        <td class="dosb-awdl"><span data-bs-toggle="tooltip" title="{{ context.llythrenwau[node.dosbarth] }}">{{ node.dosbarth }}</span></td>
     </tr>
     {%- endif -%}
 

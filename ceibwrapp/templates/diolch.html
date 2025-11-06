@@ -9,7 +9,7 @@
 
 <div>
 {%- if context.amrwd -%}
-    <form method="post", action={{ url_for('datryswr') }}>
+    <form method="post", action={{ url_for('datrys') }}>
         <input type="hidden" name="mewnbwn", value="{{ context.amrwd }}">
         <button type="submit" class="btn btn-primary">Datrys</button>
     </form>

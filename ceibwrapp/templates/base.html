@@ -1,35 +1,44 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="cy" data-bs-theme="light">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
     <!-- ceibwr CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ceibwrapp.css') }}">
 
     <!-- icon -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/caib.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/caib-darkmode.png') }}">
 
-    <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %}Cowbois Ceibwr{% endblock %}</title>
+  
   </head>
-  <body>
-    <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('index')}}">
+
+  <body class="ps-2 pe-2">
+
+    <nav class="navbar fixed-top navbar-expand-md bg-light navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
           <img 
+            id="caib"
             src="{{ url_for('static', filename='images/caib.png') }}"
             width="30"
             height="30"
           >
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+              <!-- <li class="nav-item active">
+                <a class="nav-link" href="/">Hafan</a>
+              </li> -->
               <li class="nav-item active">
                 <a class="nav-link" href="/odliadur">Odliadur</a>
               </li>
@@ -37,10 +46,13 @@
                 <a class="nav-link" href="/cleciadur">Cleciadur</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/datryswr">Datryswr</a>
+              <a class="nav-link" href="/datrys">Datrys</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/pysgotwr">Pysgotwr</a>
+              <a class="nav-link" href="/pysgota">Pysgota</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/darlunio">Darlunio</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="/dysgu">Dysgu</a>
@@ -48,31 +60,83 @@
             <li class="nav-item active">
               <a class="nav-link" href="/cerddi">Cerddi</a>
             </li>
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
               <a class="nav-link" href="/cronfa">Cronfa</a>
+            </li> -->
+            <li class="nav-item active">
+              <a class="nav-link" href="/cc">Cowbois</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/cc">cc</a>
+              <a class="nav-link" id="switchMode">Tywyll</a>
             </li>
           </ul>
         </div>
+      </div>  
     </nav>
+    <br/>
+    <br/>
 
     <div class="container">
         <br/>
         <h2>{% block heading %} {% endblock %}</h2>  
-        <hr/>
+        <br/>
+
         {% block content %} {% endblock %}
     </div>
 
     <div class="container">
-      <hr/>
+      <!-- <hr/> -->
       <p style="text-align:right;color:grey;font-size:80%;"">&copy; Cowbois Ceibwr 2025</p>
     </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+    <!-- toggle light/dark mode -->
+    <script>
+      
+      const navEl = document.querySelector('.navbar')
+      
+      function toggleDark() {
+        if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+          localStorage.setItem("theme", "light");
+          switchMode.innerHTML = "Tywyll"; 
+          document.documentElement.setAttribute('data-bs-theme', 'light')
+          document.getElementById('caib').src="{{ url_for('static', filename='images/caib.png') }}"
+          navEl.classList.remove('navbar-dark', 'bg-dark')
+          navEl.classList.add('navbar-light', 'bg-light')
+        } else {
+          localStorage.setItem("theme", "dark");
+          document.documentElement.setAttribute('data-bs-theme','dark')
+          switchMode.innerHTML = "Golau"; 
+          document.getElementById('caib').src="{{ url_for('static', filename='images/caib-darkmode.png') }}"
+          navEl.classList.remove('navbar-light', 'bg-light')
+          navEl.classList.add('navbar-dark', 'bg-dark')
+        }
+      }
+
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.setAttribute('data-bs-theme','dark')
+        switchMode.innerHTML = "Golau";
+        document.getElementById('caib').src="{{ url_for('static', filename='images/caib-darkmode.png') }}"
+        navEl.classList.remove('navbar-light', 'bg-light')
+        navEl.classList.add('navbar-dark', 'bg-dark')
+      }
+
+      document.getElementById('switchMode').addEventListener('click', toggleDark);
+    </script>
+
+    <!-- enable tooltips -->
+    <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+    </script>
+
   </body>
 </html>

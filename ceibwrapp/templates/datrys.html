@@ -1,52 +1,27 @@
 {% extends 'base.html' %}
 
-{% block heading %} Datryswr {% endblock %}
+{% block heading %} Datrys {% endblock %}
 
 {% block content %}
+<p>Cynnig ar ddatrys llinellau, penillion a cherddi (amherffaith).</p>
 
 <form method="post">
 
     <div class="form-group">
-        <textarea name="mewnbwn" placeholder="Teipiwch fan hyn" rows=4
+        <textarea name="mewnbwn" placeholder="Teipiwch fan hyn" rows=7
                 class="form-control">{{ request.form['mewnbwn'] }}</textarea>
     </div>
+    <br/>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Datrys</button>
     </div>
 </form>
 
 <br/>
+{%- include "profion.html" -%}
+<br/>
 
-Profion
-<table style="border:2px black;">
-    <tr>
-        <td style="vertical-align:top;">
-            Ochain cloch a chanu clir<br/>
-            Ni all lladd ond ennyn llid<br/>
-            Gwn ddifa lawer calon<br/>
-            Bydd y dolydd yn deilio<br/>
-            Trydar mwyn adar mynydd
-        </td>
-        <td style="vertical-align:top;">
-            Wele rith fel ymyl rhod - o'n cwmpas<br/>
-            Campwaith dewin hynod.<br/>
-            Hen linell bell nad yw'n bod<br/>
-            Hen derfyn nad yw'n darfod.
-        </td>
-        <td style="vertical-align:top;">
-            Dwyglust feinion aflonydd<br/>
-            Dail saets wrth ei dâl y sydd<br/>
-            Trwsio fal golewo glain<br/>
-            Y bu wydrwr ei bedrain
-        </td>
-        <td style="vertical-align:top;">
-            Llwybr i dranc y lle bo'r drin,<br/>
-            Diau, ni ddawr angau rin<br/>
-            Na breiniau glew na brenin
-        </td>
-    </tr>
-</table>  
-<div id="prif"></div>
+<div id="datrysiad"></div>
 
 <br/>
 
@@ -80,9 +55,9 @@ Profion
 
 <h5><pre>
 {%- if context.datrysiad.dosbarth -%}
-    <span style="color:blue">{{ context.llythrenwau[context.datrysiad.dosbarth] }}</span>
+    <span>{{ context.llythrenwau[context.datrysiad.dosbarth] }}</span>
 {%- else -%}
-    <span style="color:purple">{{ context.llythrenwau[None] }}</span>
+    <span style="color:darkcyan">{{ context.llythrenwau[None] }}</span>
 {%- endif -%}
 </pre></h5>
 
@@ -91,20 +66,21 @@ Profion
     <thead>
         <tr style="border:1px solid; padding:15px">
             <th class="pennawd-llinell">Llinell</th>
-            <th class="pennawd">CNG</th>
-            <th class="pennawd">NSI</th>
-            <th class="pennawd">ACE</th>
-            <th class="pennawd">CYT</th>
-            <th class="pennawd-right-border">ODL</th>
+            <th class="pennawd"><span data-bs-toggle="tooltip" title="Cynghanedd">CNG</span></th>
+            <th class="pennawd"><span data-bs-toggle="tooltip" title="Nifer sillafau">NSI</span></th>
+            <th class="pennawd"><span data-bs-toggle="tooltip" title="Aceniad">ACE</span></th>
+            <th class="pennawd"><span data-bs-toggle="tooltip" title="Cytseinedd">CYT</span></th>
+            <th class="pennawd-right-border"><span data-bs-toggle="tooltip" title="Odl fewnol">ODL</span></th>
             {%- if context.datrysiad.lefel() > 1 -%}
-                <th class="pennawd">CWP</th>
-                <th class="pennawd-right-border">ODL</th>
+                <th class="pennawd"><span data-bs-toggle="tooltip" title="Cwpled">CWP</span></th>
+                <th class="pennawd-right-border"><span data-bs-toggle="tooltip" title="Odl gwpled">ODL</span></th>
             {%- endif -%}
-            {%- if context.datrysiad.lefel() > 2 -%}
-                <th class="pennawd">MES</th>
+            {%- if context.datrysiad.lefel() > 2 or context.datrysiad is mesur -%}
+                <th class="pennawd"><span data-bs-toggle="tooltip" title="Mesur">MES</span></th>
+                <th class="pennawd"><span data-bs-toggle="tooltip" title="Prifodl">ODL</span></th>
             {%- endif -%}
             {%- if context.datrysiad.lefel() > 3 -%}
-                <th class="pennawd">AWD</th>
+                <th class="pennawd"><span data-bs-toggle="tooltip" title="Awdl">AWD</span></th>
             {%- endif -%}
         </tr>
     </thead>
@@ -125,7 +101,7 @@ IPA
 
 <br/>
 
-STATS
+STA
 <div class="info">Nifer llinellau: {{ context.datrysiad.nifer_rhaniadau() }}
 Nifer geiriau: {{ context.datrysiad.nifer_geiriau() }}
 Nifer sillafau: {{ context.datrysiad.nifer_sillafau() }}

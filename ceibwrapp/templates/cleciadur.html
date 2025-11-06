@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
-{% block heading %} Cleciadur (araf ac amherffaith) {% endblock %}
+{% block heading %} Cleciadur {% endblock %}
 
 {% block content %}
+<p>Araf ac amherffaith ... ac yn difetha egin feirdd.</p>
+
+<!-- <p><strong>Rhybudd!!</strong> Mae defynddio cleciadur yn diffetha egin feirdd. <strong>You have been warned!!</strong></p> -->
+
 <form method="post">
     <div class="form-group">
         <input type="text" name="ymholiad"
@@ -10,6 +14,7 @@
                value="{{ request.form['ymholiad'] }}"
                size="20"></input>
     </div>
+    <br/>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Clecs</button>
     </div>
