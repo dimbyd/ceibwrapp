@@ -91,6 +91,10 @@ def refresh_mefus():
 
     mefus_time = max(os.path.getmtime(f) for f in mefus_files)
     cerddi_time = max(os.path.getmtime(f) for f in cerddi_files)
+    
+    print(mefus_time)
+    print(cerddi_time)
+    print(mefus_time < cerddi_time)
 
     if mefus_time < cerddi_time:
         print('REFRESHING MEFUS')

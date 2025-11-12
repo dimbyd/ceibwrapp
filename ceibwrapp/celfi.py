@@ -119,7 +119,8 @@ def create_mefus():
                 continue
 
             # datrys
-            dat = pe.datryswr(uned)                
+            dat = pe.datryswr(uned)
+            dat.set_nbrs()  # pwysig!
             dat.meta = meta
 
             # record (dict)

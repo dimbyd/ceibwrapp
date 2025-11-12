@@ -10,9 +10,5 @@ STATIC_FOLDER = os.path.join(SRC_FOLDER, 'static')
 MEFUS_FOLDER = os.path.join(STATIC_FOLDER, 'mefus')
 UPLOAD_FOLDER = os.path.join(STATIC_FOLDER, 'uploads')
 TMP_FOLDER = os.path.join(STATIC_FOLDER, 'tmp')
-ALLOWED_EXTENSIONS = {'txt', 'pdf'}
-
-# UPLOAD_FOLDER = '/Users/scmde/projects/ceibwrapp/ceibwrapp/static/uploads'
-
-
+ALLOWED_EXTENSIONS = {'txt'}
 
